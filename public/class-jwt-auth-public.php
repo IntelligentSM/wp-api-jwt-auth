@@ -224,6 +224,10 @@ class Jwt_Auth_Public {
 		if ( ! $auth_header ) {
 			$auth_header = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ? sanitize_text_field( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) : false;
 		}
+		
+		if ( ! $auth_header ) {
+			$auth_header = $_COOKIE['wp-jwt-login'] ? sanitize_text_field( $_COOKIE['wp-jwt-login'] ) : false;
+		}
 
 		if ( ! $auth_header ) {
 			return $user;
